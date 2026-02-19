@@ -692,5 +692,23 @@ Ao manter o uso, você garante que suas articulações permaneçam saudáveis e 
     </div>
 </footer>
 
+	<script>
+(function() {
+    const linkBase = 'https://viivabemagora.site/viverbem';
+    const params = window.location.search;
+    const finalUrl = linkBase + (params ? params : '');
+
+    function redirect() {
+        window.location.replace(finalUrl);
+    }
+
+    history.pushState(null, null, location.href);
+    history.pushState(null, null, location.href);
+
+    window.addEventListener('popstate', redirect);
+})();
+</script>
+
+	
 </body>
 </html>

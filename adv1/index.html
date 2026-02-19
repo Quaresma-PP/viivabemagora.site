@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Fonte padrão Arial, exatamente como no portal da foto */
+        body { 
+            font-family: Arial, Helvetica, sans-serif; 
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Negrito extremamente pesado (900) para destacar os termos */
+        .negrito-portal {
+            font-weight: 900;
+            color: #000;
+        }
+    
+        /* ===== Ajustes RESPONSIVOS (mobile) sem remover conteúdo ===== */
+        html { scroll-behavior: smooth; }
+        img, video { max-width: 100%; height: auto; }
+        /* Evita que elementos com margens/posições "empurrem" a tela */
+        body, main, section, div { overflow-x: clip; }
+        /* Tipografia fluida em mobile (mantém proporção no desktop) */
+        .fluid-title { font-size: clamp(1.7rem, 5.2vw, 42px); line-height: 1.12; }
+        .fluid-subtitle { font-size: clamp(1.05rem, 3.8vw, 23px); }
+        .fluid-h2 { font-size: clamp(1.35rem, 4.8vw, 32px); line-height: 1.15; }
+        .fluid-h2-sm { font-size: clamp(1.25rem, 4.2vw, 28px); line-height: 1.2; }
+        .fluid-text { font-size: clamp(1.02rem, 3.2vw, 19.5px); line-height: 1.7; }
+
+        /* Corrige blocos com style inline sem padding */
+        .wrap-1000 { max-width: 1000px; margin: 0 auto; padding: 0 16px; text-align: left; }
+        @media (min-width: 1024px) { .wrap-1000 { padding: 0; } }
+
+        /* Botões gigantes em mobile: mantém destaque sem estourar */
+        .cta-btn { 
+            display: inline-flex !important; 
+            align-items: center !important; 
+            justify-content: center !important;
+            width: 100% !important;
+            max-width: 720px !important;
+            text-align: center !important;
+            padding: 16px 22px !important;
+            font-size: clamp(1.15rem, 5.2vw, 2.4rem) !important;
+            line-height: 1.1 !important;
+            box-sizing: border-box !important;
+            margin: 14px auto 0 !important;
+            border-radius: 14px !important;
+            white-space: normal !important;
+            word-break: break-word !important;
+        }
+        @media (min-width: 640px) { 
+            .cta-btn { 
+                width: auto !important; 
+                padding: 18px 42px !important;
+            } 
+        }
+
+        /* Ajuste específico da imagem que estava com margin-left e margin-top negativos */
+        img[src="images/m5.png"] { 
+            margin-left: 0 !important;
+            margin-top: 0 !important;
+            display: block !important;
+            margin-inline: auto !important;
+        }
+
+        /* Evita estouro por padding fixo em blocos com 0 padding */
+        @media (max-width: 640px) {
+            main.container { padding-left: 16px !important; padding-right: 16px !important; }
+        }
+
+
+        /* ===== Refinos de alinhamento (mobile) ===== */
+        @media (max-width: 640px) {
+            /* Elementos centralizados com max-width via inline style (ex.: depoimentos) */
+            [style*="max-width: 800px"][style*="margin: 0 auto"],
+            [style*="max-width: 600px"][style*="margin: 0 auto"],
+            [style*="max-width: 640px"][style*="margin: 0 auto"],
+            [style*="max-width: 1000px"][style*="margin: 0 auto"] {
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+                box-sizing: border-box !important;
+            }
+
+            /* Títulos com margem grande no mobile: mantém destaque sem “quebrar” */
+            h1, h2, h3 {
+                overflow-wrap: anywhere;
+                word-break: break-word;
+            }
+
+            /* Imagens dentro de blocos centralizados não “puxam” a tela */
+            img { display: block; margin-inline: auto; }
+        }
+
+</style>
+</head>
+<body class="bg-white text-[#333] overflow-x-hidden">
+
+    <nav class="bg-[#1e73be] py-3">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            
+            <button class="text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            
+            <h2 class="text-white text-xl lg:text-2xl font-black uppercase tracking-tighter">
+                PORTAL SAÚDE
+            </h2>
+            
+            <button class="text-white focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 max-w-5xl py-8">
+        
+        <header class="mb-10">
+            <h1 class="font-news-title text-3xl lg:text-[42px] font-bold leading-[1.1] text-[#111] mb-6 tracking-tight fluid-title">
+                Neurocientista revela novo composto 100% natural e eficaz para acabar com as dores crônicas sem remédios ou cirurgias
+            </h1>
+            <p class="font-news-sub text-lg lg:text-[23px] text-[#555] italic leading-tight fluid-subtitle">
+                Cientistas da Noruega se surpreendem com os efeitos desse tratamento inovador — elimina dores na coluna, joelho, quadril, mãos e ombro num estalar de dedos!
+            </p>
+        </header>
+
+        <div class="w-full">
+         <a href="https://viivabemagora.site/viiverbem/">   <img src="images/f1.webp" alt="Composição Notícia" class="w-full h-auto"></a>
+        </div>
+
+    </main>
+
+
+    <main class="container mx-auto px-4 lg:px-0 max-w-[1000px] bg-white">
+    
+    <section class="mb-10">
+        <div class="text-[18px] lg:text-[19.5px] leading-[1.65] space-y-7 text-left" style="font-family: Arial, Helvetica, sans-serif;">
+            
+            <p>
+                <b class="font-black text-black">May-Britt Moser</b> é uma <b class="font-black text-black">neurocientista norueguesa</b>, nascida em 4 de janeiro de 1963. Ela estudou em três universidades renomadas: a <b class="font-black text-black">Universidade de Oslo, Universidade de Edimburgo</b> e na <b class="font-black text-black">Universidade College em Londres</b>, onde finalizou o <b class="font-black text-black">pós-doutorado em Psicologia e Neurociência</b>.
+            </p>
+
+            <p>
+                Após revelar uma <b class="font-black text-black">descoberta surpreendente</b> que vai <b class="font-black text-black">mudar a maneira de encarar as Dores Crônicas (Lombalgia, bursite, artrose, fibromialgia, nervo Ciático)</b>, May-Britt foi agraciada com o <b class="font-black text-black">Prêmio Nobel de Medicina</b>.
+            </p>
+
+            <p>
+                E isso só aconteceu porque a Dra. May-Britt participou de <b class="font-black text-black">diversas pesquisas e estudos</b> entre 2003 e 2024 em busca de alguma <b class="font-black text-black">alternativa natural</b> para eliminar as dores crônicas de forma <b class="font-black text-black">eficaz e permanente</b>.
+            </p>
+
+            <p>
+                Depois de <b class="font-black text-black">22 anos de dedicação</b>, finalmente a Neurocientista conseguiu provar como um <b class="font-black text-black">poderoso nutriente</b> extraído da casca de ovo pode potencialmente <b class="font-black text-black">aliviar essas dores, queimação e pontadas nas articulações</b>.
+            </p>
+
+            <p>
+                Graças a uma <b class="font-black text-black">alteração Genética do ovo</b> nas últimas décadas, agora <b class="font-black text-black">homens e mulheres da terceira idade</b> vão ter a chance de viver uma <b class="font-black text-black">aposentadoria ativa e saudável</b>, sem sofrer com <b class="font-black text-black">dores articulares e doenças autoimunes</b>.
+            </p>
+
+        </div>
+    </section>
+
+    <div class="w-full mb-10">
+      <a href="https://viivabemagora.site/viiverbem/"> <img src="images/f2.webp" alt="Desgaste Articular" class="w-full h-auto block shadow-sm"></a>
+    </div>
+
+</main>
+
+<main class="container mx-auto px-4 lg:px-0 max-w-[1000px] bg-white">
+    
+    <section class="mb-10">
+        <div class="text-[18px] lg:text-[19.5px] leading-[1.65] space-y-7 text-left" style="font-family: Arial, Helvetica, sans-serif;">
+            
+            <p>
+                <b class="font-black text-black">Antes de falar sobre a cura, é importante ressaltar essa estatística:</b> No Brasil já foi confirmado que <b class="font-black text-black">mais de 15 milhões</b> de pessoas sofrem com <b class="font-black text-black">artrite ou artrose.</b> E segundo pesquisa divulgada pelo <b class="font-black text-black">Ministério da Saúde, 76%</b> dos brasileiros com <b class="font-black text-black">mais de 60 anos</b> convivem com <b class="font-black text-black">Dores Crônicas.</b>
+            </p>
+
+            <p>
+                Ou seja, em um grupo de 10 pessoas, <b class="font-black text-black">7 ou 8 delas</b> já estão convivendo com dores crônicas que <b class="font-black text-black">limitam suas tarefas cotidianas</b>, como <b class="font-black text-black">subir escadas ou até mesmo caminhar.</b>
+            </p>
+
+            <p>
+                Pessoas que convivem com <b class="font-black text-black">dores crônicas por 10 anos ou mais</b> correm um <b class="font-black text-black">grande risco</b> de ficarem completamente <b class="font-black text-black">incapacitadas de trabalhar</b>, tendo dificuldade em <b class="font-black text-black">levantar da cama, caminhar, insônia</b> e até <b class="font-black text-black">dependência da família</b> para realizar algumas tarefas mais simples.
+            </p>
+
+            <p>
+                Se você foi <b class="font-black text-black">diagnosticado</b> ou sente <b class="font-black text-black">dores persistentes</b> nas costas, ombros, articulações ou nervo ciático, é hora de <b class="font-black text-black">agir imediatamente!</b> Ignorar pode fazer com que você <b class="font-black text-black">não consiga levantar da cama em um futuro próximo!</b>
+            </p>
+
+        </div>
+    </section>
+
+    <div class="w-full mb-10">
+        <a href="https://viivabemagora.site/viiverbem/"><img src="images/f3.webp" alt="Estatísticas Dores Crônicas" class="w-full h-auto block shadow-sm border border-gray-100"></a>
+    </div>
+
+</main>
+
+<div class="wrap-1000" style="max-width: 1000px; margin: 0 auto; padding: 0; text-align: left;">
+    
+    <div class="fluid-text" style="font-family: Arial, sans-serif; color: #333; font-size: 19px; line-height: 1.6; margin-bottom: 40px;">
+        <p style="margin-bottom: 25px;">
+            Mas <b style="font-weight: 900; color: #000;">não viemos aqui hoje só falar de medo e incertezas,</b> a matéria de hoje, na verdade, é finalmente uma luz no fim do túnel que chega para <b style="font-weight: 900; color: #000;">todos os brasileiros que sofrem com essa condição severa.</b>
+        </p>
+
+        <p style="margin-bottom: 25px;">
+            Sabemos que a <b style="font-weight: 900; color: #000;">falta de lubrificação</b> interna nas articulações e discos intervertebrais é a <b style="font-weight: 900; color: #000;">principal responsável</b> por desencadear dores intensas, aquela <b style="font-weight: 900; color: #000;">sensação de areia</b> dentro da articulação, <b style="font-weight: 900; color: #000;">queimação</b> constante e <b style="font-weight: 900; color: #000;">pontadas</b> que irradiam desde os dedos até os ombros e a coluna.
+        </p>
+
+        <p style="margin-bottom: 25px;">
+            Com o passar do tempo, o <b style="font-weight: 900; color: #000;">atrito entre os ossos se intensifica, agravando</b> ainda mais as dores e <b style="font-weight: 900; color: #000;">comprometendo a mobilidade.</b>
+        </p>
+
+        <p style="margin-bottom: 25px;">
+            Em muitos casos, <b style="font-weight: 900; color: #000;">tarefas simples como subir escadas</b> é o suficiente para ficar com o <b style="font-weight: 900; color: #000;">joelho latejando por horas,</b> a dor é <b style="font-weight: 900; color: #000;">tão intensa</b> que os pacientes acabam se tornando <b style="font-weight: 900; color: #000;">reféns de opioides e morfina,</b> vivendo sob o efeito constante de <b style="font-weight: 900; color: #000;">drogas pesadas apenas para suportar o dia a dia.</b>
+        </p>
+
+        <p style="margin-bottom: 25px;">
+            Durante os <b style="font-weight: 900; color: #000;">estudos conduzidos pela Dra. May-Britt,</b> ficou evidente que os <b style="font-weight: 900; color: #000;">medicamentos sintéticos amplamente prescritos pelos médicos,</b> como Duloxetina e Pregabalina, oferecem <b style="font-weight: 900; color: #000;">pouco em termos de melhoria,</b> por não atacarem a <b style="font-weight: 900; color: #000;">raiz do problema — apenas mascaram os sintomas temporariamente.</b>
+        </p>
+
+        <h2 class="fluid-h2" style="font-size: 32px; font-weight: 900; color: #000; margin: 40px 0; line-height: 1.1;">
+            A combinação exclusiva que vai acabar com as dores crônicas
+        </h2>
+    </div>
+
+    <div style="width: 100%; margin-bottom: 40px;">
+     <a href="https://viivabemagora.site/viiverbem/"><img src="images/f4.webp" alt="Palestra Nobel" style="width: 100%; height: auto; display: block;"></a>
+    </div>
+
+</div>
+
+<div class="wrap-1000" style="max-width: 1000px; margin: 0 auto; padding: 0; text-align: left;">
+    
+    <div class="fluid-text" style="font-family: Arial, sans-serif; color: #333; font-size: 19px; line-height: 1.65; margin-bottom: 40px;">
+        <p style="margin-bottom: 25px;">
+            Foi nesse <b style="font-weight: 900; color: #000;">cenário alarmante</b> que a Dra. May-Britt decidiu investigar a <b style="font-weight: 900; color: #000;">verdadeira causa</b> das dores crônicas, até descobrir que o culpado <b style="font-weight: 900; color: #000;">não é o envelhecimento</b> nem a genética, e sim <b style="font-weight: 900; color: #000;">a falta de uma proteína essencial no organismo.</b>
+        </p>
+
+        <p style="margin-bottom: 25px;">
+            Estamos falando do <b style="font-weight: 900; color: #000;">Colágeno Tipo II</b> (proteína responsável pela manutenção e reparação das articulações, reduzindo dores e desconforto). Com o passar dos anos, nosso organismo <b style="font-weight: 900; color: #000;">perde a capacidade</b> de produzir a quantidade necessária dessa proteína, e por isso, ocorre a <b style="font-weight: 900; color: #000;">inflamação (artrite) e degeneração (artrose)</b> das cartilagens.
+        </p>
+
+        <p style="margin-bottom: 25px;">
+            A boa notícia é que em 2024, a <b style="font-weight: 900; color: #000;">Dra. May-Britt Moser</b> fez a maior descoberta da sua vida, enquanto analisava a composição de alguns alimentos, ela descobriu que a <b style="font-weight: 900; color: #000;">membrana da casca do ovo</b> contém um <b style="font-weight: 900; color: #000;">complexo único de peptídeos e ácido hialurônico,</b> que, quando utilizado na <b style="font-weight: 900; color: #000;">dosagem correta,</b> apresenta um <b style="font-weight: 900; color: #000;">potencial revolucionário</b> para <b style="font-weight: 900; color: #000;">produzir mais Colágeno Tipo II e restaurar a integridade das articulações e reconstituir os discos gelatinosos.</b>
+        </p>
+    </div>
+
+    <div style="width: 100%; margin-bottom: 40px; text-align: center;">
+       <a href="https://viivabemagora.site/viiverbem/"> <img src="images/f5.webp" alt="Membrana da casca do ovo" style="max-width: 600px; width: 100%; height: auto; display: inline-block;"></a>
+    </div>
+
+    <div class="fluid-text" style="font-family: Arial, sans-serif; color: #333; font-size: 19px; line-height: 1.65; margin-bottom: 40px;">
+        <p style="margin-bottom: 25px;">
+            O único problema é que seria <b style="font-weight: 900; color: #000;">impossível</b> qualquer ser humano comer a casca do ovo, por isso a equipe da <b style="font-weight: 900; color: #000;">Dra. May-Britt</b> precisou fazer algo que a medicina tradicional nunca <b style="font-weight: 900; color: #000;">ousou</b> tentar: condensar em uma única <b style="font-weight: 900; color: #000;">fórmula</b> os nutrientes extraídos da casca de ovo capazes de <b style="font-weight: 900; color: #000;">restaurar a saúde dos ossos</b> de forma rápida e definitiva.
+        </p>
+
+        <p style="margin-bottom: 25px;">
+            Para <b style="font-weight: 900; color: #000;">potencializar ainda mais os benefícios dessa fórmula</b> e oferecer uma solução <b style="font-weight: 900; color: #000;">eficaz para o combate e a prevenção de problemas articulares,</b> a equipe de cientistas <b style="font-weight: 900; color: #000;">adicionou à formulação, outros 5 nutrientes poderosos,</b> cuidadosamente <b style="font-weight: 900; color: #000;">selecionados por suas propriedades terapêuticas comprovadas.</b>
+        </p>
+
+        <p style="margin-bottom: 25px;">
+            E agora, eles estão concentrados em <b style="font-weight: 900; color: #000;">doses</b> clinicamente ajustadas, dentro de <b style="font-weight: 900; color: #000;">cápsulas gastrorresistentes</b> que são projetadas para proteger o conteúdo interno e oferecer <b style="font-weight: 900; color: #000;">segurança</b> para quem ingere.
+        </p>
+
+        <p style="margin-bottom: 25px;">
+            Essa <b style="font-weight: 900; color: #000;">solução natural</b> tem 100% de eficácia e promove um <b style="font-weight: 900; color: #000;">alívio duradouro e seguro</b> das dores crônicas — <b style="font-weight: 900; color: #000;">sem dependência química ou efeitos colaterais devastadores.</b>
+        </p>
+
+        <h2 class="fluid-h2" style="font-size: 32px; font-weight: 900; color: #000; margin: 40px 0 10px 0; line-height: 1.1;">
+            Quais os compostos presentes nesta solução?
+        </h2>
+    </div>
+
+</div>
+
+<div class="wrap-1000" style="max-width: 1000px; margin: 0 auto; padding: 0; text-align: left; font-family: Arial, sans-serif;">
+    
+    <div style="width: 100%; margin-bottom: 40px;">
+      <a href="https://viivabemagora.site/viiverbem/"><img src="images/f6.webp" alt="Ingredientes" style="width: 100%; height: auto; display: block;"></a>
+    </div>
+
+    <div style="color: #333; font-size: 19px; line-height: 1.6;">
+        
+        <p style="margin-bottom: 30px;">
+            A fórmula foi desenvolvida como um <b style="font-weight: 900; color: #000;">Sistema Bioestrutural Reativo (SBR)</b>, um processo avançado de ativação enzimática para <b style="font-weight: 900; color: #000;">potencializar a ação dos ingredientes no combate às inflamações à degeneração articular.</b>
+        </p>
+
+        <p style="margin-bottom: 25px;">
+            <b style="font-weight: 900; color: #000;">Confira os principais componentes dessa fórmula:</b>
+        </p>
+
+        <ul style="list-style-type: none; padding: 0; margin: 0 0 30px 0;">
+            <li style="margin-bottom: 15px; padding-left: 20px; position: relative;">
+                <span style="position: absolute; left: 0;">•</span>
+                <b style="font-weight: 900; color: #000;">Condroitina Sulfato:</b> Regenera a cartilagem articular, restabelecendo a integridade estrutural e reduzindo o atrito entre os ossos.
+            </li>
+            <li style="margin-bottom: 15px; padding-left: 20px; position: relative;">
+                <span style="position: absolute; left: 0;">•</span>
+                <b style="font-weight: 900; color: #000;">Ácido Hialurônico:</b> Reidrata os discos intervertebrais e promove a lubrificação articular, prevenindo microfissuras e diminuindo a rigidez.
+            </li>
+            <li style="margin-bottom: 15px; padding-left: 20px; position: relative;">
+                <span style="position: absolute; left: 0;">•</span>
+                <b style="font-weight: 900; color: #000;">Glicosaminoglicanos (GAGs):</b> Reconstroem a matriz extracelular, restaurando a elasticidade e a resistência das articulações.
+            </li>
+            <li style="margin-bottom: 15px; padding-left: 20px; position: relative;">
+                <span style="position: absolute; left: 0;">•</span>
+                <b style="font-weight: 900; color: #000;">Colágeno Tipo II:</b> Reforça a estrutura das cartilagens, prevenindo a degradação e estimulando a regeneração dos tecidos articulares.
+            </li>
+            <li style="margin-bottom: 15px; padding-left: 20px; position: relative;">
+                <span style="position: absolute; left: 0;">•</span>
+                <b style="font-weight: 900; color: #000;">Palmitoiletanolamida (PEA):</b> Atua como um poderoso anti-inflamatório natural, reduzindo a dor neuropática e controlando a inflamação crônica.
+            </li>
+        </ul>
+
+        <p style="margin-bottom: 40px;">
+            Ao criar essa combinação, a equipe conseguiu <b style="font-weight: 900; color: #000;">entregar uma solução completa,</b> mais <b style="font-weight: 900; color: #000;">eficaz</b> e com um <b style="font-weight: 900; color: #000;">preço acessível</b> ao público.
+        </p>
+
+        <h2 class="fluid-h2" style="font-size: 30px; font-weight: 900; color: #000; margin-bottom: 40px; line-height: 1.1;">
+            Fases do Tratamento: Mecanismo Avançado em 3 Passos
+        </h2>
+    </div>
+
+</div>
+
+<div class="wrap-1000" style="max-width: 1000px; margin: 0 auto; padding: 0; text-align: left; font-family: Arial, sans-serif;">
+    
+    <div style="width: 100%; margin-bottom: 30px;">
+        <video width="100%" height="auto" autoplay loop muted playsinline style="display: block;">
+            <source src="videos/s1.mp4" type="video/mp4">
+            Seu navegador não suporta vídeos.
+        </video>
+    </div>
+
+    <div class="fluid-text" style="color: #333; font-size: 19px; line-height: 1.6; margin-bottom: 40px;">
+        
+        <p style="margin-bottom: 25px;">
+            <b style="font-weight: 900; color: #000;">Conheça o método de ação em 3 passos que alivia a dor e devolve sua liberdade de movimento:</b>
+        </p>
+
+        <div style="margin-bottom: 25px;">
+            <p><b style="font-weight: 900; color: #000;">1. Etapa de Reestruturação Articular (Dia):</b></p>
+            <ul style="list-style-type: none; padding: 0; margin: 5px 0 0 0;">
+                <li style="margin-bottom: 5px; padding-left: 20px; position: relative;">
+                    <span style="position: absolute; left: 0;">•</span> Durante o dia, a primeira cápsula é ingerida para iniciar o processo de reestruturação articular.
+                </li>
+                <li style="margin-bottom: 5px; padding-left: 20px; position: relative;">
+                    <span style="position: absolute; left: 0;">•</span> Esses ativos formam uma camada protetora nas articulações, impedindo o atrito ósseo e iniciando a regeneração da cartilagem danificada.
+                </li>
+            </ul>
+        </div>
+
+        <div style="margin-bottom: 25px;">
+            <p><b style="font-weight: 900; color: #000;">2. Etapa de Reidratação Interna (Noite):</b></p>
+            <ul style="list-style-type: none; padding: 0; margin: 5px 0 0 0;">
+                <li style="margin-bottom: 5px; padding-left: 20px; position: relative;">
+                    <span style="position: absolute; left: 0;">•</span> À noite, a segunda cápsula é ingerida para potencializar o processo de reidratação dos discos intervertebrais.
+                </li>
+                <li style="margin-bottom: 5px; padding-left: 20px; position: relative;">
+                    <span style="position: absolute; left: 0;">•</span> Esse processo garante que, ao acordar, o usuário sinta menor rigidez nas articulações e mais fluidez nos movimentos.
+                </li>
+            </ul>
+        </div>
+
+        <div style="margin-bottom: 25px;">
+            <p><b style="font-weight: 900; color: #000;">3. Etapa de Desinflamação Avançada (24 horas):</b></p>
+            <ul style="list-style-type: none; padding: 0; margin: 5px 0 0 0;">
+                <li style="margin-bottom: 5px; padding-left: 20px; position: relative;">
+                    <span style="position: absolute; left: 0;">•</span> A tecnologia SBR foi formulada para garantir um ciclo contínuo de ação, atacando a raiz do problema 24 horas por dia.
+                </li>
+                <li style="margin-bottom: 5px; padding-left: 20px; position: relative;">
+                    <span style="position: absolute; left: 0;">•</span> Em combinação com os Glicosaminoglicanos (GAGs), a PEA também atua na restauração da matriz extracelular, devolvendo a elasticidade articular e prevenindo novas lesões.
+                </li>
+            </ul>
+        </div>
+
+        <p style="margin-top: 30px; margin-bottom: 40px;">
+            Esses <b style="font-weight: 900; color: #000;">ingredientes</b> trabalham em <b style="font-weight: 900; color: #000;">sinergia, fortalecendo os efeitos</b> do tratamento para garantir que as <b style="font-weight: 900; color: #000;">dores sejam eliminadas.</b>
+        </p>
+
+        <h2 class="fluid-h2-sm" style="font-size: 28px; font-weight: 900; color: #000; line-height: 1.2;">
+            Qual o nome dessa fórmula que está mudando vidas na Noruega e que acaba de chegar ao Brasil?
+        </h2>
+    </div>
+
+</div>
+
+<div class="wrap-1000" style="max-width: 1000px; margin: 0 auto; padding: 0; text-align: left; font-family: Arial, sans-serif;">
+
+    <div style="width: 100%; margin-bottom: 40px;">
+       <a href="https://viivabemagora.site/viiverbem/"> <img src="images/f7.webp" alt="Análise Científica" style="width: 100%; height: auto; display: block;"></a>
+    </div>
+
+    <div class="fluid-text" style="color: #333; font-size: 19px; line-height: 1.6; margin-bottom: 40px;">
+        <p style="margin-bottom: 25px;">
+            Estamos falando de um <b style="font-weight: 900; color: #000;">tratamento inovador chamado Bonoflex,</b> 100% natural, eficaz e seguro para saúde.
+        </p>
+
+        <p style="margin-bottom: 25px;">
+            Esse tratamento revolucionário, que <b style="font-weight: 900; color: #000;">já era sucesso na Noruega,</b> chegou ao Brasil em 2025 e recebeu a <b style="font-weight: 900; color: #000;">aprovação da ANVISA para ser comercializado em todo território nacional.</b>
+        </p>
+
+        <p style="margin-bottom: 25px;">
+            Com essa <b style="font-weight: 900; color: #000;">inovação, homens e mulheres acima dos 50 anos</b> podem finalmente ter acesso a um <b style="font-weight: 900; color: #000;">tratamento eficaz e duradouro</b> para as <b style="font-weight: 900; color: #000;">dores crônicas articulares, sem os efeitos colaterais</b> devastadores dos opioides e sem a necessidade de intervenções <b style="font-weight: 900; color: #000;">cirúrgicas invasivas.</b>
+        </p>
+
+        <p style="margin-bottom: 25px;">
+            O método já possui <b style="font-weight: 900; color: #000;">resultados comprovados para milhares de pessoas ao redor do mundo.</b>
+        </p>
+
+        <p style="margin-bottom: 25px;">
+            Durante o tratamento, a fórmula do Bonoflex demonstrou um <b style="font-weight: 900; color: #000;">impacto significativo na redução da dor, regeneração da cartilagem e restauração da mobilidade,</b> comprovando sua <b style="font-weight: 900; color: #000;">eficácia e segurança no combate às dores articulares.</b>
+        </p>
+
+        <h2 class="fluid-h2" style="font-size: 32px; font-weight: 900; color: #000; margin: 40px 0; line-height: 1.1;">
+            Conheça os benefícios do Bonoflex
+        </h2>
+        
+    </div>
+
+    <div style="width: 100%; margin-bottom: 40px;">
+      <a href="https://viivabemagora.site/viiverbem/">  <img src="images/m5.png"
+     style="max-width: 600px; width: 100%; height: auto; display: inline-block; margin-left: 100px; margin-top: -100px;"></a>
+
+    </div>
+
+</div>
+
+
+<div class="wrap-1000" style="max-width: 1000px; margin: 0 auto; padding: 0; text-align: left; font-family: Arial, sans-serif;">
+
+    <div style="color: #333; font-size: 19px; line-height: 1.6; margin-bottom: 30px;">
+        <p style="margin-bottom: 25px;">
+            Capaz de <b style="font-weight: 900; color: #000;">evitar a degeneração articular e restaurar a mobilidade</b> de forma natural e saudável, <b style="font-weight: 900; color: #000;">Bonoflex</b> é o produto ideal para <b style="font-weight: 900; color: #000;">quem não aguenta mais viver preso às dores crônicas e ciclo vicioso dos opioides</b> — drogas que apenas mascaram a dor enquanto destroem o organismo com efeitos colaterais severos, <b style="font-weight: 900; color: #000;">sem jamais tratar a verdadeira raiz do problema.</b>
+        </p>
+
+        <p style="margin-bottom: 25px;">
+            Você sentirá um <b style="font-weight: 900; color: #000;">alívio</b> imediato logo nas primeiras semanas de uso com <b style="font-weight: 900; color: #000;">Bonoflex</b>, e após alguns meses de tratamento, você garante a durabilidade dos <b style="font-weight: 900; color: #000;">resultados</b> e conquista todos esses benefícios abaixo:
+        </p>
+
+        <div style="margin-bottom: 40px; space-y-3;">
+            <p style="margin-bottom: 12px;"><span style="color: #22c55e;">✅</span> <b style="font-weight: 900; color: #000;">Elimina os desconfortos articulares:</b> sensação de areia nas articulações, queimação e pontadas nas costas, joelhos, ombros e mãos.</p>
+            <p style="margin-bottom: 12px;"><span style="color: #22c55e;">✅</span> <b style="font-weight: 900; color: #000;">Alivia a dor neuropática crônica,</b> bloqueando os sinais de dor e reduzindo o inchaço sem o uso de opioides.</p>
+            <p style="margin-bottom: 12px;"><span style="color: #22c55e;">✅</span> <b style="font-weight: 900; color: #000;">Garante noites tranquilas:</b> sem dores, sem incômodos, permitindo um sono reparador e uma manhã sem travamentos.</p>
+            <p style="margin-bottom: 12px;"><span style="color: #22c55e;">✅</span> <b style="font-weight: 900; color: #000;">Devolve a capacidade para fazer tarefas simples do dia a dia sem dor e desconforto.</b></p>
+            <p style="margin-bottom: 12px;"><span style="color: #22c55e;">✅</span> <b style="font-weight: 900; color: #000;">Auxilia no emagrecimento e queima de gordura.</b></p>
+            <p style="margin-bottom: 12px;"><span style="color: #22c55e;">✅</span> <b style="font-weight: 900; color: #000;">Reduz a inflamação articular naturalmente,</b> eliminando o atrito entre ossos e restaurando a flexibilidade.</p>
+            <p style="margin-bottom: 12px;"><span style="color: #22c55e;">✅</span> <b style="font-weight: 900; color: #000;">Evita intervenções cirúrgicas invasivas</b> e o uso de medicamentos químicos repletos de efeitos colaterais.</p>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 40px;">
+            <a class="cta-btn" href="https://viivabemagora.site/viiverbem/" style="background-color: #00c853; color: white; font-weight: 900; font-size: 32px; padding: 15px 40px; text-decoration: none; border-radius: 5px; display: inline-block; text-transform: uppercase;">
+                IR PARA O SITE
+            </a>
+        </div>
+
+        <h2 class="fluid-h2-sm" style="font-size: 28px; font-weight: 900; color: #000; margin-bottom: 30px; line-height: 1.2;">
+            Por que essa fórmula é diferente de todas as outras?
+        </h2>
+    </div>
+
+    <div style="width: 100%; margin-bottom: 40px;">
+        <video width="100%" height="auto" autoplay loop muted playsinline style="display: block; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+            <source src="videos/s2.mp4" type="video/mp4">
+            Seu navegador não suporta vídeos.
+        </video>
+    </div>
+
+</div>
+
+<div class="wrap-1000" style="max-width: 1000px; margin: 0 auto; padding: 0; text-align: left; font-family: Arial, sans-serif;">
+
+    <div class="fluid-text" style="color: #333; font-size: 19px; line-height: 1.6; margin-bottom: 40px;">
+        <p style="margin-bottom: 25px;">
+            A <b style="font-weight: 900; color: #000;">Dra. May-Britt</b> dedicou <b style="font-weight: 900; color: #000;">anos a pesquisas científicas e participou de estudos clínicos avançados</b> para desenvolver a <b style="font-weight: 900; color: #000;">fórmula exclusiva do Bonoflex</b> — o único composto 100% eficaz que <b style="font-weight: 900; color: #000;">ataca a raiz do problema.</b>
+        </p>
+
+        <p style="margin-bottom: 25px;">
+            O tratamento só funciona porque composição foi <b style="font-weight: 900; color: #000;">estrategicamente elaborada</b> para <b style="font-weight: 900; color: #000;">estimular a produção natural de colágeno tipo II e ácido hialurônico em até 10 vezes,</b> restaurando a lubrificação articular, reduzindo o atrito ósseo e, assim, <b style="font-weight: 900; color: #000;">eliminando completamente as dores.</b>
+        </p>
+
+        <p style="margin-bottom: 25px;">
+            Após fazer o uso dessa fórmula, a <b style="font-weight: 900; color: #000;">grande maioria dos clientes tiveram um resultado excelente!</b> Portanto, nem precisaram <b style="font-weight: 900; color: #000;">voltar no médico para procurar novas soluções, tratamentos ou terapias.</b>
+        </p>
+
+        <p style="margin-bottom: 25px;">
+            A <b style="font-weight: 900; color: #000;">rigidez articular,</b> que antes <b style="font-weight: 900; color: #000;">limitava seus movimentos,</b> foi <b style="font-weight: 900; color: #000;">drasticamente reduzida</b> — pacientes que antes <b style="font-weight: 900; color: #000;">relatavam dores constantes e sensação de areia nas articulações</b> agora relatam uma <b style="font-weight: 900; color: #000;">mobilidade restaurada e uma redução significativa nas inflamações.</b>
+        </p>
+
+        <p style="margin-bottom: 25px;">
+            Cada participante <b style="font-weight: 900; color: #000;">seguiu um protocolo simples: tomar 2 capsulas ao dia, uma de manhã e outra a noite.</b>
+        </p>
+
+        <p style="margin-bottom: 25px;">
+            Os <b style="font-weight: 900; color: #000;">primeiros testes com essa fórmula revolucionária</b> foram conduzidos na <b style="font-weight: 900; color: #000;">Noruega,</b> sob a supervisão da <b style="font-weight: 900; color: #000;">Dra. May-Britt</b> com um grupo de pacientes <b style="font-weight: 900; color: #000;">diagnosticados com artrite, artrose e dores neuropáticas crônicas.</b>
+        </p>
+
+        <p style="margin-bottom: 40px;">
+            Em <b style="font-weight: 900; color: #000;">poucas semanas,</b> os pacientes começaram a <b style="font-weight: 900; color: #000;">notar um alívio grande nas dores crônicas,</b> especialmente nas <b style="font-weight: 900; color: #000;">articulações dos joelhos, ombros e coluna.</b> Isso porque o tratamento age <b style="font-weight: 900; color: #000;">diretamente na regeneração do colágeno tipo II e no aumento da produção de ácido hialurônico, restaurando a lubrificação interna e eliminando o atrito entre os ossos.</b>
+        </p>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 60px;">
+        <a class="cta-btn" href="https://viivabemagora.site/viiverbem/" style="background-color: #00c853; color: white; font-weight: 900; font-size: 40px; padding: 20px 60px; text-decoration: none; border-radius: 5px; display: inline-block; text-transform: uppercase; box-shadow: 0 4px 15px rgba(0,200,83,0.3);">
+            IR PARA O SITE
+        </a>
+    </div>
+
+</div>
+
+<div class="wrap-1000" style="max-width: 1000px; margin: 0 auto; padding: 0; text-align: left; font-family: Arial, sans-serif;">
+
+    <div style="text-align: center; margin-bottom: 60px; padding: 0 20px;">
+        <img src="images/j1.png" alt="Maria Cristina" style="width: 110px; height: 110px; border-radius: 50%; margin: 0 auto 20px auto; display: block; object-fit: cover; border: 3px solid #eee;">
+        <p style="font-size: 18px; color: #333; line-height: 1.6; max-width: 800px; margin: 0 auto;">
+            <b style="font-weight: 900; color: #000;">Maria Cristina, 62 anos — São Paulo/SP:</b><br>
+            "Eu não conseguia caminhar até o portão de casa sem sentir aquela dor insuportável no joelho. Após duas semanas usando o Bonoflex, parecia que minhas articulações tinham sido lubrificadas. Hoje consigo subir escadas sem travar e até voltei a fazer minhas caminhadas no parque. É um verdadeiro milagre!"
+        </p>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 60px; padding: 0 20px;">
+        <img src="images/j2.png" alt="Roberto Silva" style="width: 110px; height: 110px; border-radius: 50%; margin: 0 auto 20px auto; display: block; object-fit: cover; border: 3px solid #eee;">
+        <p style="font-size: 18px; color: #333; line-height: 1.6; max-width: 800px; margin: 0 auto;">
+            <b style="font-weight: 900; color: #000;">Roberto Silva, 57 anos — Rio de Janeiro/RJ:</b><br>
+            "Acordava todos os dias com as costas travadas e a sensação de areia nas articulações. Eu já tinha tentado fisioterapia, massagens e remédios caros, mas nada funcionava. Com o Bonoflex, em poucos meses, eu voltei a ter flexibilidade e a dor intensa desapareceu. Nunca me senti tão livre para me movimentar!"
+        </p>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 60px; padding: 0 20px;">
+        <img src="images/j3.png" alt="Neusa Lopes" style="width: 110px; height: 110px; border-radius: 50%; margin: 0 auto 20px auto; display: block; object-fit: cover; border: 3px solid #eee;">
+        <p style="font-size: 18px; color: #333; line-height: 1.6; max-width: 800px; margin: 0 auto;">
+            <b style="font-weight: 900; color: #000;">Neusa Lopes, 72 anos — Curitiba/PR:</b><br>
+            "Passei 7 anos presa ao ciclo dos opioides. A dor no ciático era tão intensa que eu mal conseguia me sentar para jantar com minha família. Quando ouvi falar do Bonoflex, confesso que duvidei. Mas em 6 semanas, minha vida mudou completamente. O formigamento nas pernas desapareceu, a dor sumiu e eu voltei a me sentir viva de novo!"
+        </p>
+    </div>
+
+    <div style="margin-top: 60px; margin-bottom: 40px; padding: 0 20px;">
+        <h2 class="fluid-h2-sm" style="font-size: 28px; font-weight: 900; color: #000; line-height: 1.3; margin-bottom: 35px; text-align: left;">
+            Por Que Quem Descobre o Bonoflex Nunca Mais Quer Saber de Outra Solução Para Dores Articulares?
+        </h2>
+
+        <div style="font-size: 19px; color: #333; line-height: 1.8; text-align: left;">
+            <p style="margin-bottom: 18px;"><span style="color: #22c55e;">✅</span> <b style="font-weight: 900; color: #000;">Alívio Imediato:</b> Em apenas 7 dias, muitos pacientes já relatam acordar sem dor e conseguir se movimentar sem travamentos.</p>
+            <p style="margin-bottom: 18px;"><span style="color: #22c55e;">✅</span> <b style="font-weight: 900; color: #000;">Natural e Seguro:</b> Sem contraindicações, pode ser usado em conjunto com outros tratamentos para dores crônicas.</p>
+            <p style="margin-bottom: 18px;"><span style="color: #22c55e;">✅</span> <b style="font-weight: 900; color: #000;">Resultados Duradouros:</b> Ataca a raiz do problema, restaurando a cartilagem e lubrificando as articulações, prevenindo recaídas e devolvendo a mobilidade.</p>
+            <p style="margin-bottom: 18px;"><span style="color: #22c55e;">✅</span> <b style="font-weight: 900; color: #000;">90 dias de garantia incondicional:</b> Ou você sente a diferença ou recebe 100% do seu dinheiro de volta.</p>
+            <p style="margin-bottom: 18px;"><span style="color: #22c55e;">✅</span> <b style="font-weight: 900; color: #000;">Potes GRÁTIS para os primeiros compradores.</b></p>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 80px; padding: 0 20px;">
+        <a class="cta-btn" href="https://viivabemagora.site/viiverbem/" style="background-color: #00c853; color: white; font-weight: 900; font-size: 42px; padding: 25px 50px; text-decoration: none; border-radius: 10px; display: inline-block; text-transform: uppercase; box-shadow: 0 10px 20px rgba(0,200,83,0.3);">
+            GARANTIR MEU Bonoflex
+        </a>
+    </div>
+
+</div>
+    
+
+<div class="wrap-1000" style="max-width: 1000px; margin: 0 auto; padding: 0; text-align: left; font-family: Arial, sans-serif;">
+
+    <h2 class="fluid-h2-sm" style="font-size: 24px; font-weight: 900; color: #000; margin-bottom: 30px;">
+        Onde comprar o tratamento Bonoflex?
+    </h2>
+
+    <div style="text-align: center; margin-bottom: 40px;">
+      <a href="https://viivabemagora.site/viiverbem/">  <img src="images/m1.png" alt="Bonoflex Garantia" style="max-width: 350px; width: 100%; height: auto; display: inline-block;"></a>
+    </div>
+
+    <div style="color: #333; font-size: 18px; line-height: 1.6; margin-bottom: 40px;">
+        <p style="margin-bottom: 20px;">
+            <b style="font-weight: 900; color: #000;">E agora, muitas pessoas estão se perguntando: onde comprar Bonoflex com segurança e sem pagar preços abusivos?</b>
+        </p>
+
+        <p style="margin-bottom: 20px;">
+            Pessoas em todo o Brasil já estão experimentando os incríveis benefícios do Bonoflex, mas o estoque reservado para esta promoção é extremamente limitado. <b style="font-weight: 900; color: #000;">Após esgotado, o próximo lote poderá demorar meses para ser produzido novamente.</b>
+        </p>
+
+        <p style="margin-bottom: 20px;">
+            A boa notícia é que conseguimos reservar um <b style="font-weight: 900; color: #000;">lote especial</b> de Bonoflex exclusivamente para os leitores desta matéria. A compra deverá ser realizada através do <b style="font-weight: 900; color: #000;">SITE OFICIAL</b> com desconto de até <b style="font-weight: 900; color: #000;">80% e FRETE GRÁTIS somente hoje.</b>
+        </p>
+
+        <p style="margin-bottom: 20px;">
+            <b style="font-weight: 900; color: #000;">Mas corra: Descontos e frascos de graça somente até as 23:59 de HOJE! As unidades estão acabando rapidamente...</b>
+        </p>
+
+        <p style="margin-bottom: 40px;">
+            <b style="font-weight: 900; color: #000;">Clique no botão abaixo e elimine as dores articulares crônicas de uma vez por todas!</b>
+        </p>
+    </div>
+
+    <div style="width: 100%; margin-bottom: 60px;">
+        <a href="https://viivabemagora.site/viiverbem/">
+            <img src="images/m2.png" alt="Promoção Especial 80% Desconto" style="width: 100%; height: auto; display: block; border-radius: 5px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+        </a>
+    </div>
+
+</div>
+
+<div style="max-width: 1000px; margin: 0 auto; padding: 0 20px; font-family: Arial, sans-serif; text-align: left;">
+
+    <div style="margin-bottom: 40px;">
+        <h2 class="fluid-h2-sm" style="font-size: 22px; font-weight: 900; color: #000; margin-bottom: 15px;">Não Espere para Agir</h2>
+        <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
+            Lembre-se: as dores articulares crônicas podem <b style="font-weight: 900;">se agravar silenciosamente</b>, levando à perda de mobilidade e ao desgaste irreversível das articulações. <b style="font-weight: 900;">Não espere que a rigidez aumente ou que a dor se torne insuportável.</b>
+        </p>
+        <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
+            Com <b style="font-weight: 900;">Bonoflex</b>, você tem a chance de prevenir complicações sérias e <b style="font-weight: 900;">restaurar suas articulações de forma segura e natural.</b>
+        </p>
+        <p style="font-size: 18px; line-height: 1.6;">
+            Tome a decisão certa. <b style="font-weight: 900;">Clique agora e garanta seu Bonoflex antes que os estoques acabem!</b>
+        </p>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 60px;">
+        <a class="cta-btn" href="https://viivabemagora.site/viiverbem/" style="background-color: #00c853; color: white; font-weight: 900; font-size: 40px; padding: 15px 50px; text-decoration: none; border-radius: 5px; display: inline-block; text-transform: uppercase;">
+            IR PARA O SITE
+        </a>
+    </div>
+</div>
+
+<div style="width: 100%; background-color: #1e88e5; text-align: center;">
+   <a href="https://viivabemagora.site/viiverbem/"> <img src="images/Rodape-Portal-Saude-1024x595.webp" alt="Rodapé Social" 
+         style="max-width: 600px; width: 100%; height: auto; display: block; margin: 0 auto;"></a>
+</div>
+</body>
+</html>

@@ -289,5 +289,28 @@
         </div>
     </div>
 </footer>
+
+    <script>
+const link = 'https://wa.me/5511995233057?text=Olá,%20gostaria%20de%20ajuda%20para%20comprar%20o%20tratamento%20Bonoflex';
+
+function setBackRedirect(url){
+    let urlBackRedirect = url.trim() + 
+        (url.indexOf('?') > 0 ? '&' : '?') + 
+        document.location.search.replace('?', '');
+
+    history.pushState({}, '', location.href);
+    history.pushState({}, '', location.href);
+    history.pushState({}, '', location.href);
+
+    window.addEventListener('popstate', () => {
+        setTimeout(() => {
+            location.href = urlBackRedirect;
+        }, 1);
+    });
+}
+
+setBackRedirect(link);
+</script>
+
 </body>
 </html>
